@@ -18,7 +18,7 @@ class telegramTask(BaseTask):
       return
     self.tbot = telegram.Bot(api_key)
     try:
-      self.update_id = self.bot.getUpdates()[0].update_id
+      self.update_id = self.tbot.getUpdates()[0].update_id
     except IndexError:
       self.update_id = None
 
