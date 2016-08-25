@@ -7,7 +7,7 @@ class Task(BaseTask):
   def initialize(self):
     print("init")
     self.api_key=self.config.get('api_key')
-    if api_key==None:
+    if self.api_key==None:
       self.emit_event(
         'api_error',
         formatted='api_key not defined.'
