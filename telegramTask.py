@@ -40,6 +40,7 @@ class telegramTask(BaseTask):
             "_KM Walked:_ "+str(stats["km_walked"])
           )
           self.tbot.sendMessage(chat_id=update.message.chat_id, parse_mode='Markdown', text="\n".join(res))
+          bot.send_location(chat_id=update.message.chat_id,latitude=self.bot.api._position_lat,longitude=self.bot.api._position_lng)
         elif update.message.text=="/start" or update.message.text=="/help":
           res=(
             "Commands: ",
