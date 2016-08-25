@@ -5,7 +5,7 @@ from pokemongo_bot.base_task import BaseTask
 class telegramTask(BaseTask):
   SUPPORTED_TASK_API_VERSION = 1
   update_id=None
-  bot=None
+  tbot=None
 
   def initialize(self):
     print("init")
@@ -16,9 +16,9 @@ class telegramTask(BaseTask):
         formatted='api_key not defined.'
       )
       return
-    self.bot = telegram.Bot(api_key)
+    self.tbot = telegram.Bot(api_key)
 
   def work(self):
-    for update in self.bot.getUpdates(offset=self.update_id, timeout=10):
+    for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
       if update.message:
         print(update.message.text)
