@@ -8,6 +8,9 @@ class telegramTask(DataStore, BaseTask):
   update_id=None
   tbot=None
 
+  def __init__(self, bot, config):
+    super(telegramTask, self).__init__(bot, config)
+
   def initialize(self):
     print("init")
     api_key=self.config.get('api_key')
