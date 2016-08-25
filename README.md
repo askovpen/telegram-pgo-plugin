@@ -1,5 +1,11 @@
 # [PokemonGo-Bot](https://github.com/PokemonGoF/PokemonGo-Bot) telegram Plugin
 
+### Installation
+
+```
+$ pip install python-telegram-bot --upgrade
+```
+
 ### Usage
 
 In PokemonGo-Bot main section insert:
