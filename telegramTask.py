@@ -1,9 +1,8 @@
 import telegram
 import pprint
 from pokemongo_bot.base_task import BaseTask
-from pokemongo_bot.datastore import Datastore
 
-class telegramTask(DataStore, BaseTask):
+class telegramTask(BaseTask):
   SUPPORTED_TASK_API_VERSION = 1
   update_id=None
   tbot=None
