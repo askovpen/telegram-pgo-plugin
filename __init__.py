@@ -1,1 +1,1 @@
-from telegramTask import Task
+from telegramTask import telegramTask
