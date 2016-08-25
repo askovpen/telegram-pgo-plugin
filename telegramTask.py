@@ -44,7 +44,7 @@ class telegramTask(BaseTask):
             "_Poke Stop Visits:_ "+str(stats["poke_stop_visits"])+" ("+str(ps_day)+" _today_)",
             "_KM Walked:_ "+str(stats["km_walked"])
           )
-          self.tbot.sendMessage(chat_id=update.message.chat_id, text="\n".join(res))
+          self.tbot.sendMessage(chat_id=update.message.chat_id, parse_mode='Markdown', text="\n".join(res))
 
   def _get_player_stats(self):
     """
