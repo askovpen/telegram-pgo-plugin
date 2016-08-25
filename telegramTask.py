@@ -27,7 +27,7 @@ class telegramTask(BaseTask):
 
   def work(self):
     for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
-      update_id=update.update_id+1
+      self.update_id=update.update_id+1
       if update.message:
         if update.message.text=="/info":
           stats=self._get_player_stats()
