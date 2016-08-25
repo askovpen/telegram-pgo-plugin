@@ -6,9 +6,6 @@ class telegramTask(BaseTask):
   update_id=None
   tbot=None
 
-  def __init__(self, bot, config):
-    super(telegramTask, self).__init__(bot, config)
-
   def initialize(self):
     api_key=self.config.get('api_key')
     if api_key==None:
