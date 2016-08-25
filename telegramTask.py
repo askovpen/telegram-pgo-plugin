@@ -8,4 +8,4 @@ class tTask(BaseTask)
     self.api.key=self.config.get('api_key')
 
   def work(self):
-    pass
+    print(self.api.key)
