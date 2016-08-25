@@ -43,6 +43,12 @@ class telegramTask(BaseTask):
             "_KM Walked:_ "+str(stats["km_walked"])
           )
           self.tbot.sendMessage(chat_id=update.message.chat_id, parse_mode='Markdown', text="\n".join(res))
+        elif update.message.text=="/start" or update.message.text=="/help":
+          res=(
+            "Commands: ",
+            "/info - info about bot"
+          )
+          self.tbot.sendMessage(chat_id=update.message.chat_id, parse_mode='Markdown', text="\n".join(res))
 
   def _get_player_stats(self):
     """
