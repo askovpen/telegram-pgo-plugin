@@ -1,6 +1,6 @@
 from pokemongo_bot.base_task import BaseTask
 
-class tTask(BaseTask)
+class Task(BaseTask)
   SUPPORTED_TASK_API_VERSION = 1
 
   def initialize(self):
