@@ -17,6 +17,10 @@ class telegramTask(BaseTask):
       )
       return
     self.tbot = telegram.Bot(api_key)
+    try:
+      self.update_id = self.bot.getUpdates()[0].update_id
+    except IndexError:
+      self.update_id = None
 
   def work(self):
     for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
