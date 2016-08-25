@@ -1,4 +1,5 @@
 import telegram
+import pprint
 from pokemongo_bot.base_task import BaseTask
 
 
@@ -23,7 +24,7 @@ class telegramTask(BaseTask):
       self.update_id = None
 
   def work(self):
-    print(self.bot.metrics)
+    pprint.pprint(self.bot.metrics)
     for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
       if update.message:
         if update.message.text=="/info":
