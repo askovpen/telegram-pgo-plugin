@@ -2,8 +2,13 @@
 
 ### Installation
 
+Single install:
 ```
 $ pip install python-telegram-bot --upgrade
+```
+Docker install:
+```
+docker run -it --entrypoint=pip pokemongo-bot install python-telegram-bot --upgrade
 ```
 
 ### Usage
