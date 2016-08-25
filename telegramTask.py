@@ -1,9 +1,9 @@
 import telegram
 import pprint
 from pokemongo_bot.base_task import BaseTask
+from pokemongo_bot.datastore import Datastore
 
-
-class telegramTask(BaseTask):
+class telegramTask(DataStore, BaseTask):
   SUPPORTED_TASK_API_VERSION = 1
   update_id=None
   tbot=None
@@ -24,11 +24,26 @@ class telegramTask(BaseTask):
       self.update_id = None
 
   def work(self):
-    pprint.pprint(self.bot.metrics)
     for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
+      update_id=update.update_id+1
       if update.message:
         if update.message.text=="/info":
-          res="test"
+          stats=self._get_player_stats()
+          with self.bot.database as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT DISTINCT COUNT(encounter_id) FROM catch_log WHERE dated >= datetime('now','-1 day')")
+            catch_day=cur.fetchone()[0]
+            cur.execute("SELECT DISTINCT COUNT(pokestop) FROM pokestop_log WHERE dated >= datetime('now','-1 day')")
+            ps_day=cur.fetchone()[0]
+          res=(
+            "_Level:_ "+str(stats["level"]),
+            "_XP:_ "+str(stats["experience"])+"/"+str(stats["next_level_xp"]),
+            "_Pokemons Captured:_ "+str(stats["pokemons_captured"])+" ("+str(catch_day)+" _today_)",
+            "_Poke Stop Visits:_ "+str(stats["poke_stop_visits"])+" ("+str(ps_day)+" _today_)",
+            "_KM Walked:_ "+str(stats["km_walked"])
+          )
+          bot.sendMessage(chat_id=update.message.chat_id.chat_id, text="\n".join(res))
+
   def _get_player_stats(self):
     """
     Helper method parsing the bot inventory object and returning the player stats object.
