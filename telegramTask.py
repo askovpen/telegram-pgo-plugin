@@ -23,7 +23,7 @@ class telegramTask(BaseTask):
       self.update_id = None
 
   def work(self):
-    print(self.bot.meteics)
+    print(self.bot.metrics)
     for update in self.tbot.getUpdates(offset=self.update_id, timeout=10):
       if update.message:
         if update.message.text=="/info":
