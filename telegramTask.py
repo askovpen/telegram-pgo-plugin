@@ -1,5 +1,4 @@
 import telegram
-import pprint
 from pokemongo_bot.base_task import BaseTask
 
 class telegramTask(BaseTask):
@@ -11,7 +10,6 @@ class telegramTask(BaseTask):
     super(telegramTask, self).__init__(bot, config)
 
   def initialize(self):
-    print("init")
     api_key=self.config.get('api_key')
     if api_key==None:
       self.emit_event(
