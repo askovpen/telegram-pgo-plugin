@@ -35,6 +35,7 @@ class telegramTask(BaseTask):
             cur.execute("SELECT DISTINCT COUNT(pokestop) FROM pokestop_log WHERE dated >= datetime('now','-1 day')")
             ps_day=cur.fetchone()[0]
           res=(
+            "*"+self.bot.config.username+"*",
             "_Level:_ "+str(stats["level"]),
             "_XP:_ "+str(stats["experience"])+"/"+str(stats["next_level_xp"]),
             "_Pokemons Captured:_ "+str(stats["pokemons_captured"])+" ("+str(catch_day)+" _today_)",
