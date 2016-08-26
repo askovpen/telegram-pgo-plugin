@@ -1,4 +1,5 @@
 import telegram
+import os
 from pokemongo_bot.base_task import BaseTask
 from pokemongo_bot.base_dir import _base_dir
 class telegramTask(BaseTask):
