@@ -1,6 +1,6 @@
 import telegram
 from pokemongo_bot.base_task import BaseTask
-
+from pokemongo_bot.base_dir import _base_dir
 class telegramTask(BaseTask):
   SUPPORTED_TASK_API_VERSION = 1
   update_id=None
@@ -54,8 +54,11 @@ class telegramTask(BaseTask):
     :return: The player stats object.
     :rtype: dict
     """
-    # TODO : find a better solution than calling the api
-    inventory_items = self.bot.api.get_inventory() \
+    web_inventory = os.path.join(_base_dir, "web", "inventory-%s.json" % self.bot.config.username)
+    with open(web_inventory, "r") as infile:
+      json_inventory = json.load(infile)
+      infile.close()
+    inventory_items = json_inventory \
       .get('responses', {}) \
       .get('GET_INVENTORY', {}) \
       .get('inventory_delta', {}) \
