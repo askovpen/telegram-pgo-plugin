@@ -60,12 +60,7 @@ class telegramTask(BaseTask):
     with open(web_inventory, "r") as infile:
       json_inventory = json.load(infile)
       infile.close()
-    inventory_items = json_inventory \
-      .get('responses', {}) \
-      .get('GET_INVENTORY', {}) \
-      .get('inventory_delta', {}) \
-      .get('inventory_items', {})
     return next((x["inventory_item_data"]["player_stats"]
-        for x in inventory_items
+        for x in json_inventory
         if x.get("inventory_item_data", {}).get("player_stats", {})),
       None)
